@@ -4,7 +4,6 @@ from modules.data import bert_data_clf
 from modules.models.classifiers import BERTBiLSTMAttnClassifier
 from modules.train.train_clf import NerLearner
 
-
 warnings.filterwarnings("ignore")
 sys.path.append("../")
 
@@ -14,7 +13,6 @@ def main():
     valid_df_path = "/home/ubuntu/censor/dev2.csv"
     test_df_path = "/home/ubuntu/censor/test.csv"
     num_epochs = 100
-
 
     data = bert_data_clf.LearnDataClass.create(
         train_df_path=train_df_path,

@@ -32,7 +32,7 @@ class BERTNerModel(nn.Module, metaclass=abc.ABCMeta):
 
 class BERTBiLSTMCRF(BERTNerModel):
 
-    def __init__(self, embeddings, lstm, crf, device="cuda"):
+    def __init__(self, embeddings, lstm, crf, device=None):
         super(BERTBiLSTMCRF, self).__init__()
         self.embeddings = embeddings
         self.lstm = lstm
@@ -61,7 +61,8 @@ class BERTBiLSTMCRF(BERTNerModel):
                # CRFDecoder params
                crf_dropout=0.5,
                # Global params
-               device="cuda"):
+               device='cuda'):
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         embeddings = BERTEmbedder.create(model_name=model_name, device=device, mode=mode, is_freeze=is_freeze)
         lstm = BiLSTM.create(
                 embedding_size=embedding_size, hidden_dim=hidden_dim, rnn_layers=rnn_layers, dropout=lstm_dropout)

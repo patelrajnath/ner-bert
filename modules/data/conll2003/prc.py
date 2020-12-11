@@ -26,7 +26,7 @@ def conll2003_preprocess(
 
 def read_data(input_file):
     """Reads a BIO data."""
-    with codecs.open(input_file, "r", encoding="utf-8") as f:
+    with open(input_file, "r", encoding="utf-8") as f:
         lines = []
         words = []
         labels = []

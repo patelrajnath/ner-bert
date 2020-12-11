@@ -55,14 +55,14 @@ class InputFeature(object):
 
 
 class TextDataLoader(DataLoader):
-    def __init__(self, data_set, shuffle=False, device="cuda", batch_size=16):
+    def __init__(self, data_set, shuffle=False, device=None, batch_size=16):
         super(TextDataLoader, self).__init__(
             dataset=data_set,
             collate_fn=self.collate_fn,
             shuffle=shuffle,
             batch_size=batch_size
         )
-        self.device = device
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     def collate_fn(self, data):
         res = []
